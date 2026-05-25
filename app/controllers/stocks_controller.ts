@@ -3,32 +3,20 @@ import type { HttpContext } from '@adonisjs/core/http'
 const machine1 = {
   id: 1,
   name: 'Machine 1',
-  serial_number: 1,
   type: 'Son',
-  totalhours: 10,
-  buyDate: '2023-01-01',
-  image: '/images/machine1.jpg',
-  status: 'active',
+  image_link: '/images/machine1.jpg',
 }
 const machine2 = {
   id: 2,
-  name: 'Machine 1',
-  serial_number: 2,
+  name: 'Machine 2',
   type: 'Son',
-  totalhours: 5,
-  buyDate: '2023-02-01',
-  image: '/images/machine2.jpg',
-  status: 'inactive',
+  image_link: '/images/machine2.jpg',
 }
 const machine3 = {
   id: 3,
-  name: 'Machine 2',
-  serial_number: 1,
+  name: 'Machine 3',
   type: 'Lumière',
-  totalhours: 15,
-  buyDate: '2023-03-01',
-  image: '/images/machine3.jpg',
-  status: 'active',
+  image_link: '/images/machine3.jpg',
 }
 
 const stocks = [machine1, machine2, machine3]
@@ -53,19 +41,13 @@ export default class StocksController {
    */
   async store({ request, response }: HttpContext) {
     const name = request.input('name')
-    const serialNumber = request.input('serial_number')
     const type = request.input('type')
-    const buyDate = request.input('buyDate')
-    const image = request.input('image')
+    const image = request.file('image')
     stocks.push({
       id: stocks.length + 1,
       name,
-      serial_number: serialNumber,
       type,
-      totalhours: 0,
-      buyDate,
-      image,
-      status: 'inactive',
+      image_link: 'imageLink',
     })
     response.redirect('/stock')
   }
@@ -93,10 +75,8 @@ export default class StocksController {
     const stock = stocks.find((s) => s.id === Number.parseInt(params.id))
     if (stock) {
       stock.name = request.input('name')
-      stock.serial_number = request.input('serial_number')
       stock.type = request.input('type')
-      stock.buyDate = request.input('buyDate')
-      stock.image = request.input('image')
+      stock.image_link = 'imageLink'
     } else {
       response.status(404).send('Stock not found')
     }

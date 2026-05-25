@@ -6,5 +6,6 @@
 export const controllers = {
   NewAccount: () => import('#controllers/new_account_controller'),
   Session: () => import('#controllers/session_controller'),
+  StockItems: () => import('#controllers/stock_items_controller'),
   Stocks: () => import('#controllers/stocks_controller'),
 }

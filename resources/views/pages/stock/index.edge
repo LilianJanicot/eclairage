@@ -11,7 +11,7 @@
     <div class="cards">
             @each(stock in stocks)
             <li>
-                Nom : {{stock.name}} -- N° : {{stock.serial_number}} -- est emprunté : {{stock.status}} -- <a href="/stock/{{stock.id}}"> lien</a>
+                Nom : {{stock.name}} -- type : {{stock.type}} -- image : imageLink -- <a href="/stock/{{stock.id}}"> lien</a>
             </li>
             @endeach
     </div>  

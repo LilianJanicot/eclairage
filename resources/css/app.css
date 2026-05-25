@@ -1,3 +1,4 @@
+/*
 :root {
   --gray-1: oklch(98.5% 0 0);
   --gray-2: oklch(97% 0 0);
@@ -46,7 +47,7 @@ h6 {
 }
 
 /* Header */
-
+/*
 header {
   max-width: 1440px;
   margin: auto;
@@ -73,6 +74,7 @@ header nav a.current {
 }
 
 /* Main */
+/*
 main {
   max-width: 1440px;
   margin: 0 30px;
