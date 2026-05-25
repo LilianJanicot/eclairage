@@ -1,0 +1,18 @@
+@layout()
+    <div class="hero">
+        <h1> 
+            Stock page
+        </h1>
+        <button type="primary">
+            <a href="/stock/create">Ajouter un stock</a>
+        </button>
+    </div>
+
+    <div class="cards">
+            @each(stock in stocks)
+            <li>
+                Nom : {{stock.name}} -- N° : {{stock.serial_number}} -- est emprunté : {{stock.status}} -- <a href="/stock/{{stock.id}}"> lien</a>
+            </li>
+            @endeach
+    </div>  
+@end

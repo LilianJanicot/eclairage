@@ -1,0 +1,41 @@
+@layout()
+    <div class="hero">
+        <h1 class="title">Ajouter un stock</h1>
+    </div>
+    <form action="/stock" method="POST">
+    {{ csrfField() }}
+        <div>
+            <label>
+                Nom de la machine
+                <input type="text" name="name" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Numéro de série
+                <input type="number" name="serial_number" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Date d'achat
+                <input type="text" name="buyDate" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Type
+                <input type="text" name="type" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Image
+                <input type="text" name="image" />
+            </label>
+        </div>
+        <div>
+            <button type="submit">Ajouter</button>
+        </div>
+    </form>
+@end

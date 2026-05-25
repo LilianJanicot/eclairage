@@ -1,0 +1,40 @@
+@layout()
+    <div class="hero">
+        <h1 class="title">Modifier un stock</h1>
+    </div>
+    @form({route: 'stock.update', method: 'PUT', routeParams: [stock.id]})
+        <div>
+            <label>
+                Nom de la machine
+                <input type="text" name="name" value="{{ stock.name }}" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Numéro de série
+                <input type="number" name="serial_number" value="{{ stock.serial_number }}" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Date d'achat
+                <input type="text" name="buyDate" value="{{ stock.buyDate }}" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Type
+                <input type="text" name="type" value="{{ stock.type }}" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Image
+                <input type="text" name="image" value="{{ stock.image }}" />
+            </label>
+        </div>
+        <div>
+            <button type="submit">Modifier</button>
+        </div>
+    @end
+@end
