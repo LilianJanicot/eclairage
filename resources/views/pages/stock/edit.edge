@@ -2,34 +2,48 @@
     <div class="hero">
         <h1 class="title">Modifier un stock</h1>
     </div>
-    @form({route: 'stock.update', method: 'PUT', routeParams: [stock.id]})
-    {{ csrfField() }}
+    @form({route: 'stock.update', method: 'PUT', routeParams: [stock.id], enctype: 'multipart/form-data'})
     <div>
         <label>
         Nom de la machine
             <input type="text" name="name" />
         </label>
     </div>
+    @inputError('name')
+        <div>
+            {{ $messages.join(', ') }}
+        </div>
+        @end
     <div>
          <label>
             Type
             <select name="type">
-                <option value="">-- Modifier --</option>
-                <option value="consommable">Consommable</option>
-                <option value="energie">Energie</option>
-                <option value="lumiere">Loumière</option>
-                <option value="son">Son</option>
-                <option value="structure">Structure</option>
-                <option value="video">Vidéo</option>
+                <option value="">-- Sélectionnez --</option>
+                <option value=5>Consommable</option>
+                <option value=4>Energie</option>
+                <option value=0>Lumière</option>
+                <option value=1>Son</option>
+                <option value=3>Structure</option>
+                <option value=2>Vidéo</option>
             </select>
         </label>
     </div>
+    @inputError('type')
+        <div>
+            {{ $messages.join(', ') }}
+        </div>
+        @end
     <div>
         <label>
             Image
-            <input type="file" name="image" accept=".jpg,.jpeg"/>
+            <input type="file" name="image" accept=".jpg,.jpeg,.png"/>
         </label>
     </div>
+    @inputError('image')
+        <div>
+            {{ $messages.join(', ') }}
+        </div>
+        @end
     <div>
         <button type="submit">Modifier</button>
     </div>

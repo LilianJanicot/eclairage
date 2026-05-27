@@ -12,6 +12,7 @@ export type ScannedRoutes = {
     'stock.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'stock.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'stock.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'stock_items.store': { paramsTuple: [ParamValue]; params: {'stock_id': ParamValue} }
     'new_account.create': { paramsTuple?: []; params?: {} }
     'new_account.store': { paramsTuple?: []; params?: {} }
     'session.create': { paramsTuple?: []; params?: {} }
@@ -38,6 +39,7 @@ export type ScannedRoutes = {
   }
   POST: {
     'stock.store': { paramsTuple?: []; params?: {} }
+    'stock_items.store': { paramsTuple: [ParamValue]; params: {'stock_id': ParamValue} }
     'new_account.store': { paramsTuple?: []; params?: {} }
     'session.store': { paramsTuple?: []; params?: {} }
     'session.destroy': { paramsTuple?: []; params?: {} }

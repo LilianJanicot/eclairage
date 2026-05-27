@@ -1,4 +1,29 @@
 @layout() 
-    Nom : {{stock.name}} -- type : {{stock.type}} -- image : imageLink
-    <button><a href="/stock/{{stock.id}}/edit">Modifier</a></button>
+    Nom : {{stock.name}} -- type : 
+    @include('partials/enuminvert')
+    <button><a href="/stock/{{stock.id}}/edit">Modifier la machine</a></button>
+    <button><a href="/stock/{{stock.id}}/delete">Supprimer la machine</a></button>
+
+    <form action="/stock/{{stock.id}}/stock-items" method="POST">
+    {{csrfField()}}
+    <button type="submit">Ajouter {{stock.name}}</button>
+    </form>
+
+    <div>
+        <h2>Stock items</h2>
+        <ul>
+            @each(stockItem in stockItemsdata)
+            <li>
+                Numéro : {{stockItem.serial_number}} -- Temps d'utilisation : {{stockItem.hour_of_usage}}h -- Date d'achat : {{stockItem.buying_date}} -- Etat : 
+                @if(stockItem.status) 
+                    emprunté.
+                @else
+                    dans nos stocks.
+                @end
+                Note : {{stockItem.note}}
+                <button><a href="https://youtube.com">Accès</a></button>
+            </li>
+            @endeach
+        </ul>
+    </div>
 @end

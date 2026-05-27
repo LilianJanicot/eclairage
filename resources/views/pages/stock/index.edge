@@ -4,14 +4,16 @@
             Stock page
         </h1>
         <button type="primary">
-            <a href="/stock/create">Ajouter un stock</a>
+            <a href="/stock/create">Ajouter une machine</a>
         </button>
     </div>
 
     <div class="cards">
             @each(stock in stocks)
             <li>
-                Nom : {{stock.name}} -- type : {{stock.type}} -- image : imageLink -- <a href="/stock/{{stock.id}}"> lien</a>
+                Nom : {{stock.name}} -- type : 
+                @include('partials/enuminvert')
+                -- image : imageLink -- <a href="/stock/{{stock.id}}"> lien</a>
             </li>
             @endeach
     </div>  

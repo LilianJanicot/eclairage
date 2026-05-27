@@ -14,6 +14,11 @@ import router from '@adonisjs/core/services/router'
 router.on('/').render('pages/home').as('home')
 
 router.resource('stock', controllers.Stocks)
+router
+  .group(() => {
+    router.post('stock-items', [controllers.StockItems, 'store'])
+  })
+  .prefix('/stock/:stock_id')
 
 router
   .group(() => {
