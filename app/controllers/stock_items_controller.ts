@@ -1,76 +1,67 @@
 import type { HttpContext } from '@adonisjs/core/http'
-import { DateTime } from 'luxon'
-
-const stockItem1 = {
-  id: 1,
-  machine_id: 1,
-  serial_number: 1,
-  hour_of_usage: 10,
-  buying_date: DateTime.now().toISO(),
-  status: false,
-  note: '',
-}
-
-const stockItem2 = {
-  id: 2,
-  machine_id: 1,
-  serial_number: 2,
-  hour_of_usage: 5,
-  buying_date: DateTime.now().toISO(),
-  status: true,
-  note: 'Note de test',
-}
-
-const stockItem3 = {
-  id: 3,
-  machine_id: 2,
-  serial_number: 1,
-  hour_of_usage: 15,
-  buying_date: DateTime.now().toISO(),
-  status: false,
-  note: '',
-}
-
-const stockItems = [stockItem1, stockItem2, stockItem3]
+import StockItem from '#models/stock_item'
+import { StockItemValidator } from '#validators/stock'
 
 export default class StockItemsController {
   /**
    * Handle form submission for the create action
    */
-  async store({ params, response }: HttpContext) {
-    const lastSerialNumber = stockItems.filter(
-      (item) => item.machine_id === Number(params.stock_id)
-    ).length
+  async store({ params, response, session }: HttpContext) {
+    const lastSerialNumber = await StockItem.query()
+      .where('stock_id', params.stock_id)
+      .max('serial_number')
+      .firstOrFail()
+    const serialNumber = (lastSerialNumber.$extras.max ?? 0) + 1
     const data = {
-      id: stockItems.length + 1,
-      machine_id: Number(params.stock_id),
-      serial_number: lastSerialNumber + 1,
+      stock_id: Number(params.stock_id),
+      serial_number: serialNumber,
       hour_of_usage: 0,
-      buying_date: DateTime.now().toISO(),
       status: false,
       note: '',
     }
-    stockItems.push(data)
+    await StockItem.create(data)
+    session.flash('success', `L'item a bien été créé`)
     response.redirect().toRoute('stock.show', { id: params.stock_id })
   }
 
   /**
    * Show individual record
    */
-  async show({ params }: HttpContext) {}
-
-  /**
-   * Edit individual record
-   */
-  async edit({ params }: HttpContext) {}
+  async show({ params, view }: HttpContext) {
+    const stockItem = await StockItem.query()
+      .where('serial_number', params.serial_number)
+      .andWhere('stock_id', params.stock_id)
+      .firstOrFail()
+    return view.render('pages/stock/item/show', { stockItem })
+  }
 
   /**
    * Handle form submission for the edit action
    */
-  async update({ params, request }: HttpContext) {}
+  async update({ params, request, session, response }: HttpContext) {
+    const stockItem = await StockItem.query()
+      .where('serial_number', params.serial_number)
+      .andWhere('stock_id', params.stock_id)
+      .firstOrFail()
+    const data = await request.validateUsing(StockItemValidator)
+    await stockItem.merge(data).save()
+    session.flash('success', `L'item ${stockItem.serialNumber} a bien été mis à jour`)
+    return response.redirect().toRoute('stock-items.show', {
+      stock_id: params.stock_id,
+      serial_number: params.serial_number,
+    })
+  }
 
   /**
    * Delete record
    */
-  async destroy({ params }: HttpContext) {}
+  async destroy({ params, session, response }: HttpContext) {
+    const stockItem = await StockItem.query()
+      .where('serial_number', params.serial_number)
+      .andWhere('stock_id', params.stock_id)
+      .firstOrFail()
+    await stockItem.delete()
+    session.flash('success', `L'item ${stockItem.serialNumber} a bien été supprimé`)
+    return response.redirect().toRoute('stock.show', { id: params.stock_id })
+  }
 }

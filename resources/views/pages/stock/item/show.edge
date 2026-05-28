@@ -1,0 +1,29 @@
+@layout() 
+    Numéro de série : {{stockItem.serialNumber}} -- Temps d'utilisation : {{stockItem.hourOfUsage}}h -- Date d'achat : {{ new Date(stockItem.createdAt).toLocaleDateString('fr-FR') }} -- Etat :
+    @if(stockItem.status) 
+        emprunté.
+    @else
+        dans nos stocks.
+    @endif
+    <br>
+    @form({route:'stock-items.update', method:'PUT', routeParams:{ stock_id: stockItem.stockId, serial_number: stockItem.serialNumber }})
+        <label>
+            Modifier la note:
+            <input type="text" name="note" value="{{stockItem.note}}" />
+        </label>
+        <button type="submit">Modifier la note</button>
+        @inputError('note')
+        <div>
+            {{ $messages.join(', ') }}
+        </div>
+        @end
+    @end
+    <button type="submit" form="destroy" class="button destructive">Supprimer la machine</button>
+    @form({
+        id:'destroy',
+        route:'stock-items.destroy',
+        routeParams:{ stock_id: stockItem.stockId, serial_number: stockItem.serialNumber },
+        method:'DELETE'
+    })        
+    @end
+@end

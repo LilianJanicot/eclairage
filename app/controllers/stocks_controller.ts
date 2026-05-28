@@ -38,8 +38,8 @@ export default class StocksController {
    */
   async show({ params, view }: HttpContext) {
     const stock = await Stock.findOrFail(params.id)
-    const stockItemsdata = await StockItem.query().where('stock_id', params.id)
-    return view.render('pages/stock/show', { stock, stockItemsdata })
+    const stockItems = await StockItem.query().where('stock_id', params.id)
+    return view.render('pages/stock/show', { stock, stockItems })
   }
 
   /**

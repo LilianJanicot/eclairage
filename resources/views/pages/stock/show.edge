@@ -10,7 +10,6 @@
         method:'DELETE'
     })        
     @end
-
     <form action="/stock/{{stock.id}}/stock-items" method="POST">
     {{csrfField()}}
     <button type="submit">Ajouter {{stock.name}}</button>
@@ -19,16 +18,20 @@
     <div>
         <h2>Stock items</h2>
         <ul>
-            @each(stockItem in stockItemsdata)
-            <li>
-                Numéro : {{stockItem.serial_number}} -- Temps d'utilisation : {{stockItem.hour_of_usage}}h -- Date d'achat : {{stockItem.buying_date}} -- Etat : 
+            @each(stockItem in stockItems)
+            @if(stockItem.status)
+                <li style="color: red">
+            @else
+                <li>
+            @end
+                Numéro : {{stockItem.serialNumber}} -- Temps d'utilisation : {{stockItem.hourOfUsage}}h -- Date d'achat : {{stockItem.createdAt}} -- Etat : 
                 @if(stockItem.status) 
                     emprunté.
                 @else
                     dans nos stocks.
                 @end
                 Note : {{stockItem.note}}
-                <button><a href="https://youtube.com">Accès</a></button>
+                <button><a href="/stock/{{stock.id}}/stock-items/{{stockItem.serialNumber}}">Accès</a></button>
             </li>
             @endeach
         </ul>

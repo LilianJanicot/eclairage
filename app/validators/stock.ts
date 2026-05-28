@@ -5,3 +5,7 @@ export const StockValidator = vine.create({
   type: vine.enum(['0', '1', '2', '3', '4', '5']).transform((value) => Number(value)),
   image: vine.file({ extnames: ['jpg', 'png', 'jpeg'], size: '5mb' }),
 })
+
+export const StockItemValidator = vine.create({
+  note: vine.string().maxLength(500).optional(),
+})

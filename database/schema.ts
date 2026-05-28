@@ -8,17 +8,7 @@ import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
 export class StockItemSchema extends BaseModel {
-  static $columns = [
-    'createdAt',
-    'date',
-    'hourOfUsage',
-    'id',
-    'note',
-    'serialNumber',
-    'status',
-    'stockId',
-    'updatedAt',
-  ] as const
+  static $columns = ['createdAt', 'date', 'hourOfUsage', 'id', 'note', 'serialNumber', 'status', 'stockId', 'updatedAt'] as const
   $columns = StockItemSchema.$columns
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime | null
