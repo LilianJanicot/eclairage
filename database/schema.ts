@@ -7,6 +7,39 @@
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
+export class StockItemSchema extends BaseModel {
+  static $columns = [
+    'createdAt',
+    'date',
+    'hourOfUsage',
+    'id',
+    'note',
+    'serialNumber',
+    'status',
+    'stockId',
+    'updatedAt',
+  ] as const
+  $columns = StockItemSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column.dateTime()
+  declare date: DateTime
+  @column()
+  declare hourOfUsage: number
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare note: string | null
+  @column()
+  declare serialNumber: number
+  @column()
+  declare status: boolean
+  @column()
+  declare stockId: number | null
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
 export class StockSchema extends BaseModel {
   static $columns = ['createdAt', 'id', 'imageLink', 'name', 'type', 'updatedAt'] as const
   $columns = StockSchema.$columns

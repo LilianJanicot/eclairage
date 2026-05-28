@@ -2,7 +2,14 @@
     Nom : {{stock.name}} -- type : 
     @include('partials/enuminvert')
     <button><a href="/stock/{{stock.id}}/edit">Modifier la machine</a></button>
-    <button><a href="/stock/{{stock.id}}/delete">Supprimer la machine</a></button>
+    <button type="submit" form="destroy" class="button destructive">Supprimer la machine</button>
+    @form({
+        id:'destroy',
+        route:'stock.destroy',
+        routeParams:{ id: stock.id },
+        method:'DELETE'
+    })        
+    @end
 
     <form action="/stock/{{stock.id}}/stock-items" method="POST">
     {{csrfField()}}
