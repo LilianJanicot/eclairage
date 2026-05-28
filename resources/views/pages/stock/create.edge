@@ -36,6 +36,39 @@
         @end
         <div>
             <label>
+                Puissance (W)
+                <input type="number" name="power" min=0 />
+            </label>
+        </div>
+        @inputError('power')
+        <div>
+            {{ $messages.join(', ') }}
+        </div>
+        @end
+        <div>
+            <label>
+                Prix d'achat (€)
+                <input type="number" name="buying_price" min=0 />
+            </label>
+        </div>
+        @inputError('buying_price')
+        <div>
+            {{ $messages.join(', ') }}
+        </div>
+        @end
+        <div>
+            <label>
+                Prix de location (€)
+                <input type="number" name="rental_price" min=0 />
+            </label>
+        </div>
+        @inputError('rental_price')
+        <div>
+            {{ $messages.join(', ') }}
+        </div>
+        @end
+        <div>
+            <label>
                 Image
                 <input type="file" name="image" accept=".jpg,.jpeg,.png"/>
             </label>

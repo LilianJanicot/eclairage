@@ -31,8 +31,10 @@ export class StockItemSchema extends BaseModel {
 }
 
 export class StockSchema extends BaseModel {
-  static $columns = ['createdAt', 'id', 'imageLink', 'name', 'type', 'updatedAt'] as const
+  static $columns = ['buyingPrice', 'createdAt', 'id', 'imageLink', 'name', 'power', 'rentalPrice', 'type', 'updatedAt'] as const
   $columns = StockSchema.$columns
+  @column()
+  declare buyingPrice: number
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime | null
   @column({ isPrimary: true })
@@ -41,6 +43,10 @@ export class StockSchema extends BaseModel {
   declare imageLink: string
   @column()
   declare name: string
+  @column()
+  declare power: number
+  @column()
+  declare rentalPrice: number
   @column()
   declare type: number
   @column.dateTime({ autoCreate: true, autoUpdate: true })

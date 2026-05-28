@@ -1,6 +1,9 @@
 @layout() 
     Nom : {{stock.name}} -- type : 
     @include('partials/enuminvert')
+    .
+    <br>
+    Puissance : {{stock.power}}W -- Prix d'achat : {{stock.buyingPrice}}€ -- Prix de location : {{stock.rentalPrice}}€
     <button><a href="/stock/{{stock.id}}/edit">Modifier la machine</a></button>
     <button type="submit" form="destroy" class="button destructive">Supprimer la machine</button>
     @form({
@@ -24,7 +27,7 @@
             @else
                 <li>
             @end
-                Numéro : {{stockItem.serialNumber}} -- Temps d'utilisation : {{stockItem.hourOfUsage}}h -- Date d'achat : {{stockItem.createdAt}} -- Etat : 
+                Numéro : {{stockItem.serialNumber}} -- Temps d'utilisation : {{stockItem.hourOfUsage}}h -- Date d'achat : {{ new Date(stockItem.createdAt).toLocaleDateString('fr-FR') }}    -- Etat : 
                 @if(stockItem.status) 
                     emprunté.
                 @else

@@ -27,6 +27,9 @@ export default class StocksController {
     const stock = new Stock()
     stock.name = data.name
     stock.type = data.type
+    stock.power = data.power ?? 0
+    stock.buyingPrice = data.buying_price
+    stock.rentalPrice = data.rental_price
     stock.imageLink = 'myLink'
     await stock.save()
     session.flash('success', `${data.name} a bien été créé`)
@@ -60,6 +63,9 @@ export default class StocksController {
       stock.name = data.name
       stock.type = data.type
       stock.imageLink = 'imageLink'
+      stock.power = data.power ?? 0
+      stock.buyingPrice = data.buying_price
+      stock.rentalPrice = data.rental_price
       session.flash('success', `${stock.name} a bien été modifié`)
       await stock.save()
     } else {
