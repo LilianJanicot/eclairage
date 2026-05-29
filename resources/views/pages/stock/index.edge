@@ -10,11 +10,13 @@
 
     <div class="cards">
             @each(stock in stocks)
+            @if(!stock.isRented)
             <li>
                 Nom : {{stock.name}} -- type : 
                 @include('partials/enuminvert')
                 -- image : imageLink -- <a href="/stock/{{stock.id}}"> lien</a>
             </li>
+            @endif
             @endeach
     </div>  
 @end

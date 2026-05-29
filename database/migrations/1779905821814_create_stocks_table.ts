@@ -14,6 +14,7 @@ export default class extends BaseSchema {
       table.integer('rental_price').notNullable()
       table.timestamp('created_at')
       table.timestamp('updated_at')
+      table.boolean('is_rented').notNullable()
     })
   }
 

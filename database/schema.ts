@@ -31,7 +31,7 @@ export class StockItemSchema extends BaseModel {
 }
 
 export class StockSchema extends BaseModel {
-  static $columns = ['buyingPrice', 'createdAt', 'id', 'imageLink', 'name', 'power', 'rentalPrice', 'type', 'updatedAt'] as const
+  static $columns = ['buyingPrice', 'createdAt', 'id', 'imageLink', 'isRented', 'name', 'power', 'rentalPrice', 'type', 'updatedAt'] as const
   $columns = StockSchema.$columns
   @column()
   declare buyingPrice: number
@@ -41,6 +41,8 @@ export class StockSchema extends BaseModel {
   declare id: number
   @column()
   declare imageLink: string
+  @column()
+  declare isRented: boolean
   @column()
   declare name: string
   @column()

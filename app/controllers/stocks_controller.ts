@@ -31,6 +31,7 @@ export default class StocksController {
     stock.buyingPrice = data.buying_price
     stock.rentalPrice = data.rental_price
     stock.imageLink = 'myLink'
+    stock.isRented = false
     await stock.save()
     session.flash('success', `${data.name} a bien été créé`)
     response.redirect().toRoute('stock.index')
