@@ -7,6 +7,35 @@
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
+export class ContratSchema extends BaseModel {
+  static $columns = ['begin', 'client', 'clientAdress', 'contact', 'createdAt', 'end', 'id', 'isSigned', 'mission', 'nameContract', 'nameEvent', 'updatedAt'] as const
+  $columns = ContratSchema.$columns
+  @column.dateTime()
+  declare begin: DateTime
+  @column()
+  declare client: string
+  @column()
+  declare clientAdress: string
+  @column()
+  declare contact: string
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column.dateTime()
+  declare end: DateTime
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare isSigned: boolean | null
+  @column()
+  declare mission: string | null
+  @column()
+  declare nameContract: string
+  @column()
+  declare nameEvent: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
 export class StockItemSchema extends BaseModel {
   static $columns = ['createdAt', 'date', 'hourOfUsage', 'id', 'note', 'serialNumber', 'status', 'stockId', 'updatedAt'] as const
   $columns = StockItemSchema.$columns

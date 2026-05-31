@@ -4,6 +4,7 @@
  */
 
 export const controllers = {
+  Contrats: () => import('#controllers/contrats_controller'),
   NewAccount: () => import('#controllers/new_account_controller'),
   Session: () => import('#controllers/session_controller'),
   StockItems: () => import('#controllers/stock_items_controller'),

@@ -1,0 +1,41 @@
+@layout() 
+    <div class="hero">
+        <h1>
+        @if(contrat.isSigned)
+            Contract
+        @else
+            Devis
+        @end
+         : 
+        {{ contrat.nameContract }}</h1>
+    Client : {{contrat.client}} -- Début : {{contrat.begin}} -- Fin : {{contrat.end}} <br>
+    Adresse : {{contrat.clientAdress}} <br>
+    <p>Mission : {{contrat.mission}}</p>
+    </div>
+    <button type="primary">
+            <a href="https://google.com">Calculer triphasé</a>
+    </button>
+    <button type="primary">
+            <a href="/contrat/{{ contrat.id }}/edit">Modifier le devis</a>
+    </button>
+    @if(!contrat.isSigned)
+        <button type="submit" form="sign" class="button sign">Signer le contrat</button>
+        @form({
+            id:'sign',
+            route:'contrat.sign',
+            routeParams:{ id: contrat.id },
+            method:'PUT'
+        })
+        @end
+    @endif
+    <button type="primary" form="destroy">
+            Annuler le contrat
+    </button>
+    @form({
+            id:'destroy',
+            route:'contrat.destroy',
+            routeParams:{ id: contrat.id },
+            method:'DELETE'
+        })
+        @end
+@end

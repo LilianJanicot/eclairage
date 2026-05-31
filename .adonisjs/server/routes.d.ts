@@ -12,6 +12,14 @@ export type ScannedRoutes = {
     'stock.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'stock.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'stock.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'contrat.index': { paramsTuple?: []; params?: {} }
+    'contrat.create': { paramsTuple?: []; params?: {} }
+    'contrat.store': { paramsTuple?: []; params?: {} }
+    'contrat.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'contrat.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'contrat.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'contrat.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'contrat.sign': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'stock-items.show': { paramsTuple: [ParamValue,ParamValue]; params: {'stock_id': ParamValue,'serial_number': ParamValue} }
     'stock-items.store': { paramsTuple: [ParamValue]; params: {'stock_id': ParamValue} }
     'stock-items.update': { paramsTuple: [ParamValue,ParamValue]; params: {'stock_id': ParamValue,'serial_number': ParamValue} }
@@ -28,6 +36,10 @@ export type ScannedRoutes = {
     'stock.create': { paramsTuple?: []; params?: {} }
     'stock.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'stock.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'contrat.index': { paramsTuple?: []; params?: {} }
+    'contrat.create': { paramsTuple?: []; params?: {} }
+    'contrat.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'contrat.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'stock-items.show': { paramsTuple: [ParamValue,ParamValue]; params: {'stock_id': ParamValue,'serial_number': ParamValue} }
     'new_account.create': { paramsTuple?: []; params?: {} }
     'session.create': { paramsTuple?: []; params?: {} }
@@ -38,12 +50,17 @@ export type ScannedRoutes = {
     'stock.create': { paramsTuple?: []; params?: {} }
     'stock.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'stock.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'contrat.index': { paramsTuple?: []; params?: {} }
+    'contrat.create': { paramsTuple?: []; params?: {} }
+    'contrat.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'contrat.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'stock-items.show': { paramsTuple: [ParamValue,ParamValue]; params: {'stock_id': ParamValue,'serial_number': ParamValue} }
     'new_account.create': { paramsTuple?: []; params?: {} }
     'session.create': { paramsTuple?: []; params?: {} }
   }
   POST: {
     'stock.store': { paramsTuple?: []; params?: {} }
+    'contrat.store': { paramsTuple?: []; params?: {} }
     'stock-items.store': { paramsTuple: [ParamValue]; params: {'stock_id': ParamValue} }
     'new_account.store': { paramsTuple?: []; params?: {} }
     'session.store': { paramsTuple?: []; params?: {} }
@@ -51,13 +68,17 @@ export type ScannedRoutes = {
   }
   PUT: {
     'stock.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'contrat.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'contrat.sign': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'stock-items.update': { paramsTuple: [ParamValue,ParamValue]; params: {'stock_id': ParamValue,'serial_number': ParamValue} }
   }
   PATCH: {
     'stock.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'contrat.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   DELETE: {
     'stock.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'contrat.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'stock-items.destroy': { paramsTuple: [ParamValue,ParamValue]; params: {'stock_id': ParamValue,'serial_number': ParamValue} }
   }
 }

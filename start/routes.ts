@@ -14,6 +14,9 @@ import router from '@adonisjs/core/services/router'
 router.on('/').render('pages/home').as('home')
 
 router.resource('stock', controllers.Stocks)
+router.resource('contrat', controllers.Contrats)
+router.put('contrat/:id/sign', [controllers.Contrats, 'sign']).as('contrat.sign')
+
 router
   .group(() => {
     router

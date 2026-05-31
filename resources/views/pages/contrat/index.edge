@@ -1,0 +1,16 @@
+@layout() 
+    <div class="hero">
+        <h1>Devis et contracts</h1>
+    </div>
+    <button type="primary">
+            <a href="/contrat/create">Nouveau contrat</a>
+    </button>
+    <ul>
+        @each(contract in contracts)
+        <div>
+            <h2>{{ contract.nameContract }}</h2>
+            <p>{{ contract.client }} -- Début : {{contract.begin}} -- Fin : {{contract.end}} -- <a href="/contrat/{{ contract.id }}"> Voir les détails</a></p>
+        </div>
+        @end
+    </ul>
+@end

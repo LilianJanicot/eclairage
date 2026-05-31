@@ -1,0 +1,78 @@
+@layout() 
+    <h1>Modifier un nouveau devis</h1>
+    @form({route:"contrat.update", method:"PUT", routeParams:{ id: contrat.id }})
+        <label>
+            Nom du contrat : 
+            <input type="text" name="name_contract" placeholder="Nom du contrat" value="{{ contrat.nameContract }}">
+        </label>
+        @inputError('name_contract')
+        <div>
+            {{ $messages.join(', ') }}
+        </div>
+        @end
+        <label>
+            Nom du client : 
+            <input type="text" name="client" placeholder="Nom du client" value="{{ contrat.client }}">
+        </label>
+        @inputError('client')
+        <div>
+            {{ $messages.join(', ') }}
+        </div>
+        @end
+        <label>
+            Adresse du client : 
+            <input type="text" name="client_adress" placeholder="Adresse du client" value="{{ contrat.clientAdress }}">
+        </label>
+        @inputError('client_adress')
+        <div>
+            {{ $messages.join(', ') }}
+        </div>
+        @end
+        <label>
+            Nom de l'événement : 
+            <input type="text" name="name_event" placeholder="Nom de l'événement" value="{{ contrat.nameEvent }}">
+        </label>
+        @inputError('name_event')
+        <div>
+            {{ $messages.join(', ') }}
+        </div>
+        @end
+        <label>
+            Date de début : 
+            <input type="datetime-local" name="begin" value="{{ contrat.begin.toISO().substring(0,16) }}">
+        </label>
+        @inputError('begin')
+        <div>
+            {{ $messages.join(', ') }}
+        </div>
+        @end
+        <label>
+            Date de fin : 
+            <input type="datetime-local" name="end" value="{{ contrat.end.toISO().substring(0,16) }}">
+        </label>
+        @inputError('end')
+        <div>
+            {{ $messages.join(', ') }}
+        </div>
+        @end
+        <label>
+            Description de la mission : 
+            <textarea name="mission" placeholder="Description de la mission">{{ contrat.mission }}</textarea>
+        </label>
+        @inputError('mission')
+        <div>
+            {{ $messages.join(', ') }}
+        </div>
+        @end
+        <label>
+            Responsable de la mission : 
+            <input type="text" name="contact" placeholder="Responsable de la mission" value="{{ contrat.contact }}">
+        </label>
+        @inputError('contact')
+        <div>
+            {{ $messages.join(', ') }}
+        </div>
+        @end
+        <button type="submit">Modifier le contrat</button>        
+    @end
+@end
